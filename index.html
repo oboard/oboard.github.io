@@ -11,14 +11,28 @@
 				left: 0px;
 				right: 0px;
 				width: 100%;
-				background-color: black;
 				position: fixed;
+				height: min-content;
+				background-color: black;
+				box-shadow:0px 0px 10px black
 			}
-			a {
-				background: rgba(255, 255, 255, 0.2);
+			button {
+				border: none;
+				height: 40px;
+				outline:none;
+				color: white;
+				padding-left: 10px;
+				padding-right: 10px;
+				margin:1px;
+				background: transparent;
 				text-decoration-line: none;
-				color: whitesmoke;
-				padding: 100px;
+			}
+			button:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+			button:focus {
+				color: black;
+				background: rgb(255, 255, 255);
 			}
 		</style>
 		<script>
@@ -26,7 +40,11 @@
 	</head>
 	<body>
 		<div class="topbar">
-			<a href="https://www.baidu.com">hua</a>
+			<button onclick="window.location='https://www.baidu.com'">百度</button>
+			<button onclick="window.location='https://www.sogo.com'">搜狗</button>
+			<button onclick="window.location='https://www.bing.com'">必应</button>
+			<button onclick="window.location='https://www.yahoo.com'">雅虎</button>
+			<button onclick="window.location='https://www.google.com'">谷歌</button>
 		</div>
 		<div style="background-color:white;">
 			<p>666666</p>
