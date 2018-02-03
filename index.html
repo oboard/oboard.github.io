@@ -12,20 +12,20 @@
 				right: 0px;
 				width: 100%;
 				position: fixed;
+				padding-left: 50px;
 				height: min-content;
 				background-color: black;
-				box-shadow:0px 0px 10px black
+				box-shadow: 0px 0px 10px rgb(50, 50, 50)
 			}
 			button {
 				border: none;
 				height: 40px;
-				outline:none;
+				outline: none;
 				color: white;
 				padding-left: 10px;
 				padding-right: 10px;
 				margin:1px;
 				background: transparent;
-				text-decoration-line: none;
 			}
 			button:hover {
 				background: rgba(255, 255, 255, 0.2);
@@ -34,10 +34,31 @@
 				color: black;
 				background: rgb(255, 255, 255);
 			}
+			img.imgh {
+				top: 0px;
+				left: 0px;
+				margin:1px;
+				position: fixed;
+			}
 		</style>
-		<script>
+			
+		<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js">
+	
+		</script>
+		<script type="text/javascript">
+ 			$(window).load(function() {
+　　　　		console.log("HelloWorld");
+				var x = new XMLHttpRequest();
+				//请求
+				//x.open("GET", "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1", true);
+				x.open("GET", "http://www.w3school.com.cn/example/xdom/note.xml", false);
+				
+				x.send(null);
+				console.log(x.responseText);
+			});
 		</script>
 	</head>
+
 	<body>
 		<div class="topbar">
 			<button onclick="window.location='https://www.baidu.com'">百度</button>
@@ -46,6 +67,7 @@
 			<button onclick="window.location='https://www.yahoo.com'">雅虎</button>
 			<button onclick="window.location='https://www.google.com'">谷歌</button>
 		</div>
+		<img class="imgh" height="40px" src="https://i1.hdslb.com/bfs/face/ce55a4344d3c2f35044558b84e993f5952dd9074.jpg"/>
 		<div style="background-color:white;">
 			<p>666666</p>
 			<p>666666</p>
