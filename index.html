@@ -40,6 +40,10 @@
 				margin:1px;
 				position: fixed;
 			}
+			div.body {
+				background-image: "http://l.w568w.ml/api/bing.php";
+				padding-top: 40px;
+			}
 		</style>
 			
 		<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js">
@@ -50,61 +54,23 @@
 　　　　		console.log("HelloWorld");
 				var x = new XMLHttpRequest();
 				//请求
-				//x.open("GET", "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1", true);
-				x.open("GET", "http://www.w3school.com.cn/example/xdom/note.xml", false);
-				
+				x.open("POST", "http://l.w568w.ml/api/bing.php", false);
 				x.send(null);
 				console.log(x.responseText);
+				x.onloadend = function o() {
+					$("#body").css("background-image", x.responseText);
+				}
 			});
 		</script>
 	</head>
 
 	<body>
 		<div class="topbar">
-			<button onclick="window.location='https://www.baidu.com'">百度</button>
-			<button onclick="window.location='https://www.sogo.com'">搜狗</button>
-			<button onclick="window.location='https://www.bing.com'">必应</button>
-			<button onclick="window.location='https://www.yahoo.com'">雅虎</button>
-			<button onclick="window.location='https://www.google.com'">谷歌</button>
+			<button onclick="window.location='index.html'">主页</button>
 		</div>
-		<img class="imgh" height="40px" src="https://i1.hdslb.com/bfs/face/ce55a4344d3c2f35044558b84e993f5952dd9074.jpg"/>
-		<div style="background-color:white;">
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
-			<p>666666</p>
+		<img class="imgh" height="40px" src="images/head.jpg"/>
+		<div class="body" id="body">
+			<a>wodemo</a>
 		</div>
 	</body>
 </html>
