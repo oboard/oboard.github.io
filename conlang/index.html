@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>造语管理系统</title>
+    <meta name="theme-color" content="#000000">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/Bmob-2.2.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+    <label class="mdc-text-field mdc-text-field--filled">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-line-ripple"></span>
+    </label>
+
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script>
+        mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log('!!!');
+            // 初始化
+            Bmob.initialize("bfd303bd833e3eaf", "123321");
+            const query = Bmob.Query("word");
+            query.find().then(res => {
+                res.forEach(myFunction);
+
+                function myFunction(item, index) {
+                    console.log(JSON.stringify(item));
+                    var con = $("<tr class='mdc-data-table__row'></tr>");
+                    con.append("<td class='mdc-data-table__cell'>" + item.word + "</td>",
+                        "<td class='mdc-data-table__cell'>" + item.translation1 + "</td>",
+                        "<td class='mdc-data-table__cell'>" + item.translation2 + "</td>",
+                        "<td class='mdc-data-table__cell'>" + item.createdAt + "</td>",
+                        "<td class='mdc-data-table__cell'>" + item.updatedAt + "</td>");
+                    console.log(con.toString());
+                    $("#contentaaa").append(con);
+                    // demoP = document.getElementById("content");
+                    // demoP.innerHTML = demoP.innerHTML + `<tr data-row-id="u`+ index + `" class="mdc-data-table__row" aria-selected="false">`
+                    //     ` <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">`
+                    //     `   <div class="mdc-checkbox mdc-data-table__row-checkbox mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded"`
+                    //     `         style="--mdc-ripple-fg-size:24px; --mdc-ripple-fg-scale:1.66667; --mdc-ripple-left:8px; --mdc-ripple-top:8px;">`
+                    //     `         <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u`+ index + `">`
+                    //     `          <div class="mdc-checkbox__background"><svg class="mdc-checkbox__checkmark"`
+                    //     `                  viewBox="0 0 24 24">`
+                    //     `                  <path class="mdc-checkbox__checkmark-path" fill="none"`
+                    //     `                      d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>`
+                    //     `               </svg>`
+                    //     `               <div class="mdc-checkbox__mixedmark"></div>`
+                    //     `          </div>`
+                    //     `           <div class="mdc-checkbox__ripple"></div>`
+                    //     `         </div>`
+                    //     `  </td>`
+                    //     `      <td class="mdc-data-table__cell" id="u`+ index + `">Eclair</td>`
+                    //     `     <td class="mdc-data-table__cell mdc-data-table__cell--numeric">`+item.word+`</td>`
+                    //     `     <td class="mdc-data-table__cell mdc-data-table__cell--numeric">`+item.translation1+`</td>`
+                    //     `     <td class="mdc-data-table__cell mdc-data-table__cell--numeric">`+item.translation2+`</td>`
+                    //     `     <td class="mdc-data-table__cell mdc-data-table__cell--numeric">`+item.createdAt+`</td>`
+                    //     `     <td class="mdc-data-table__cell mdc-data-table__cell--numeric">`+item.createdAt+`</td>`
+                    //     ` </tr>`;
+
+                }
+            });
+            $("#add").click(function () {
+                console.log('!!!');
+                const query = Bmob.Query('word');
+                query.set("word", $("#txtWord").val());
+                query.set("translation1", $("#txtTranslation1").val());
+                query.set("translation2", $("#txtTranslation2").val());
+                query.save().then(res => {
+                    alert("添加成功");
+                    console.log(res)
+                }).catch(err => {
+                    console.log(err)
+                })
+            });
+            $("#del").click(function () {
+                console.log('!!!');
+                const query = Bmob.Query("word");
+                query.equalTo("word", "==", $("#txtWord").val());
+                query.find().then(res => {
+                    query.destroy(res[0].objectId).then(res => {
+                        alert("删除成功");
+                        console.log(res)
+                    }).ctach(err => {
+                        console.log(err)
+                    });
+                }).catch(err => {
+                    console.log(err)
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header class="mdc-top-app-bar catalog-top-app-bar" style="left:0px;top: 0px;">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title catalog-top-app-bar__title">
+                    <span>造语管理系统</span>
+                </span>
+            </section>
+        </div>
+    </header>
+    <div class="mdc-card demo-card demo-card-shaped">
+        <div>
+            单词
+            <input type="text" id="txtWord" />
+
+            翻译1
+            <input type="text" id="txtTranslation1" />
+
+            翻译2
+            <input type="text" id="txtTranslation2" />
+
+            <button id="add" class="mdc-button greet-button">
+                <div class="mdc-button__ripple"></div>
+                <div class="mdc-button__label">添加</div>
+            </button>
+            <button id="del" class="mdc-button greet-button">
+                <div class="mdc-button__ripple"></div>
+                <div class="mdc-button__label">删除</div>
+            </button>
+        </div>
+    </div>
+
+    <div id="content" class="mdc-card demo-card demo-card-shaped">
+        <p>单词表</p>
+        <div class="mdc-data-table">
+            <table class="mdc-data-table__table">
+                <thead>
+                    <tr class="mdc-data-table__header-row">
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">单词</th>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">翻译1</th>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">翻译2</th>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">修改时间</th>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">创建时间</th>
+                    </tr>
+                </thead>
+                <tbody class="mdc-data-table__content" id="contentaaa">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
