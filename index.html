@@ -90,30 +90,11 @@
 		}
 
 		.sound {
-			width: 3.3rem;
-			height: 3.3rem;
+			width: 1rem;
+			height: 3rem;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-		}
-
-		.sound-top {
-			width: 0.1rem;
-			height: 1.1rem;
-			background-color: #d8d3d3;
-		}
-
-		.sound-middle {
-			width: 1.1rem;
-			height: 1.1rem;
-			background-color: #fff;
-			border-radius: 50%;
-			border: 1px solid #ccc;
-		}
-
-		.sound-bottom {
-			width: 0.1rem;
-			height: 1.1rem;
 			background-color: #d8d3d3;
 		}
 
@@ -161,9 +142,9 @@
 						str += '<div class="wrapper" id="wrapper">';
 						str += '<div class="left-wrapper" id="time">' + res[i].dq_time + '</div>';
 						str += '<div class="sound" >';
-						str += '<div class="sound-top"></div>';
-						str += '<div class="sound-middle"></div>';
-						str += '<div class="sound-bottom"></div>';
+						// str += '<div class="sound-top"></div>';
+						// str += '<div class="sound-middle"></div>';
+						// str += '<div class="sound-bottom"></div>';
 						str += '</div>';
 						str += '<div class="right-wrapper" id="content">' + res[i].content + '</div>';
 						str += '</div> ';
@@ -281,12 +262,6 @@
 		<center>欢迎来到一块小板子的主页</center>
 	</div> -->
 
-	<div class="topbar">
-		<button onclick="window.location='index.html'">主页</button>
-		<button onclick="window.location='https://obb.wodemo.net'">wodemo</button>
-		<button onclick="window.location='/conlang/index.html'">conlang</button>
-	</div>
-	<img class="imgh" height="40px" src="images/head.jpg" />
 
 	<div class="write-wrapper">
 		<input class="write-wrapper-input" placeholder="内容" id="title" type="text" name="title" />
@@ -294,6 +269,14 @@
 	</div>
 	<div id="bmob"></div>
 
+	<div class="topbar">
+		<button onclick="window.location='index.html'">主页</button>
+		<button onclick="window.location='https://obb.wodemo.net'">wodemo</button>
+		<button onclick="window.location='/conlang/index.html'">conlang</button>
+	</div>
+
+	<img class="imgh" height="40px" src="images/head.jpg" />
+	
 	<div class="footer"></div>
 	<!-- <div class="write">
 				<i class="iconfont icon-jia write-icon"></i>
