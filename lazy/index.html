@@ -1,126 +1,127 @@
 <!DOCTYPE html>
-<html>
+<tml>
+    <!-- https://i.loli.net/2020/10/06/dWavRxKF1ut7Vpw.png 
+		https://i.loli.net/2020/10/06/qRIDZnd2HMO96CP.png 
+		https://i.loli.net/2020/10/06/eTEZ4vBw6pUM1Ad.png
+		https://i.loli.net/2020/10/06/MPxbOCsqI9orkNX.png -->
 
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>咸鱼待办</title>
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>咸鱼待办官方网站</title>
 
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <style type="text/css">
+            body {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <style>
+            /* Make the image fully responsive */
+            
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
 
+        <script type="text/javascript">
+            $(window).load(function() {
+                console.log("HelloWorld");
+            });
+        </script>
+    </head>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<style type="text/css">
-		body {
-			background-color: #EFEFEF;
-			padding: 0;
-			margin: 0;
-			color: #999;
-		}
+    <body>
+        <div class="main-header" id="home">
+            <!-- header -->
+            <header>
+                <div class="container-fluid">
+                    <!-- nav -->
+                    <nav class="py-lg-4 py-3 px-xl-3 px-lg-3 px-2">
+                        <div id="logo">
+                            <h1><img src="images/icon.png" href="index.html"><a>&nbsp;&nbsp;咸鱼待办</a></h1>
+                        </div>
+                        <input type="checkbox" id="drop">
+                        <ul class="menu mt-2">
+                            <li class="mx-lg-5 mx-md-4 my-md-0 my-2"><a href="#download" class="reqe-button">下载应用</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- //nav -->
+                </div>
+            </header>
+            <!-- //header -->
 
-		.body {
-			width: 68%;
-			margin-left: 16%;
-			margin-right: 16%;
-			margin-top: 30px;
-			box-shadow: 2px 2px 2px #e4e3e3;
-			background-color: #FFFFFF;
-			font-size: 16px;
-			border-radius: 8px 8px 8px 8px;
-			padding-bottom: 0.8rem;
-		}
-	</style>
+            <!-- banner -->
+            <div class="main-banner">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 banner-img">
+                            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="500">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="https://i.loli.net/2020/10/06/dWavRxKF1ut7Vpw.png
+									" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="https://i.loli.net/2020/10/06/eTEZ4vBw6pUM1Ad.png
+									" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 style-banner">
+                            <h1 class="text-wh font-weight-bold">两种视图随心切换</h1>
+                            <p class="mt-sm-4 mt-4 text-li">学霸必备神器，高效的待办列表</p>
+                            <a type="button" href="#download" class="btn btn-outline-light mt-sm-5 mt-4 scroll">立即下载</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //banner -->
+        </div>
+        <div class="py-5 download" id="download">
+            <div class="container py-xl-5 py-lg-3">
+                <h2 class="text-wh text-center">下载咸鱼代办</h2>
+                <p class="sub-tittle text-center mt-3 mb-sm-5 mb-4"></p>
+                <ul class="list-unstyled apps-lists text-center mt-sm-5">
+                    <li>
+                        <a href="https://obb.lanzous.com/b00ny8m2f"><i
+								class="fa fa-windows mr-2" aria-hidden="true"></i>Windows版</a>
+                    </li>
 
-	<style>
-		div.topbar {
-			top: 0px;
-			left: 0px;
-			right: 0px;
-			width: 100%;
-			position: fixed;
-			padding-left: 50px;
-			height: min-content;
-			background-color: rgba(0, 0, 0, 0.2);
-			box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
-		}
+                    <li>
+                        <a href="https://obb.lanzous.com/b00nvuw4b"><i
+								class="fa fa-android mr-2" aria-hidden="true"></i>Android版</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="bmob"></div>
 
-		button {
-			border: none;
-			height: 40px;
-			outline: none;
-			color: white;
-			padding-left: 10px;
-			padding-right: 10px;
-			margin: 1px;
-			position: relative;
-			background: transparent;
-		}
+        <div class="footer">
 
-		button:hover {
-			background: rgba(255, 255, 255, 0.2);
-		}
-
-		button:focus {
-			color: black;
-			background: rgb(255, 255, 255);
-		}
-
-		img.imgh {
-			top: 0px;
-			left: 0px;
-			margin: 1px;
-			position: fixed;
-		}
-	</style>
-
-	<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js">
-
-	</script>
-	<script type="text/javascript">
-		$(window).load(function () {
-			console.log("HelloWorld");
-		});
-	</script>
-</head>
-
-<!-- <body background="https://area.sinaapp.com/bingImg/"> -->
-
-<body>
-	<div>
-		<center>
-			<img
-				src="http://image.coolapk.com/apk_image/2020/0706/09/474cb61c600021fdbd1fdafd4dc5b09-268257-o_1ecgsrujbh5f8nk1o5bdc910df11-uid-695942@1080x2340.jpg" />
-				<img
-					src="http://image.coolapk.com/apk_image/2020/0706/09/cffe91ec420f8771f684c4ddfc611ad-268257-o_1ecgss248j1v16qb1ps59ik4ab17-uid-695942@1080x2340.jpg" />
-					<img
-						src="http://image.coolapk.com/apk_image/2020/0706/09/5ae6723ebc4812f76016c4b5d71aa39-268257-o_1ecgss6tmhihdp5noquqg1la51d-uid-695942@1080x2340.jpg" />
-						<img
-							src="http://image.coolapk.com/apk_image/2020/0706/09/fc86ac4b8145f29589e3540009ac6f2-268257-ea92ccdda0002bb4423f068c3ee1ca00-uid-695942@1080x2340.jpg" />
-							<img
-								src="http://image.coolapk.com/apk_image/2020/0706/09/956a58f2e1dc3f3cadd4f1f4842709a-268257-o_1ecgssfa61u5n4oqkdl1div19uo1v-uid-695942@1080x2340.jpg" />
-								<img
-									src="http://image.coolapk.com/apk_image/2020/0706/09/e0962ddfff0e261d52ae78dc59bb5a1-268257-d6d6425f7edcbf9da9cba702e34200f2-uid-695942@1080x2340.jpg" />
-			咸鱼待办
-		</center>
-	</div>
-
-	<div id="bmob"></div>
-
-	<div class="topbar">
-		<button onclick="window.location='index.html'">咸鱼待办</button>
-		<button onclick="window.location='index.html'">下载</button>
-	</div>
-
-	<img class="imgh" height="40px" src="images/icon.png" />
-
-	<div class="footer"></div>
-	<!-- <div class="write">
+        </div>
+        <!-- <div class="write">
 				<i class="iconfont icon-jia write-icon"></i>
 			</div> -->
 
-</body>
+    </body>
 
-</html>
+    </html>
