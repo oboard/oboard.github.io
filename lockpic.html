@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=0.1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>xxx</title>
+    <script>
+        function lock() {
+            document.body.style.overflow = 'hidden';
+        }
+
+        function handleFiles(files) {
+            var preview = document.getElementById('preview');
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /^image\//;
+
+                if (!imageType.test(file.type)) {
+                    continue;
+                }
+
+                var img = document.createElement("img");
+                img.classList.add("obj");
+                img.file = file;
+                // 假设 "preview" 是将要展示图片的 div
+                preview.appendChild(img);
+
+                var reader = new FileReader();
+                reader.onload = (function(aImg) {
+                    return function(e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</head>
+
+<body style="margin: 0;padding: 0;">
+    <input type="file" id="input" onchange="handleFiles(this.files)">
+    <div id="preview" style="position:absolute;"></div>
+    <button onclick="lock();" style="position:fixed;left: 0;bottom: 0;">锁定</button>
+</body>
+
+</html>
