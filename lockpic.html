@@ -2,46 +2,78 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<meta name="viewport" 
-     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
-     user-scalable=0;"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+     user-scalable=0;" />
 
     <title>图片锁定</title>
     <script>
+        var s = 1;
+        var r = 0;
+
+        function blowup() {
+            s += 0.1;
+            apply();
+        }
+
+        function reduce() {
+            s -= 0.1;
+            apply();
+        }
+
+        function rotate90() {
+            r += 45;
+            apply();
+        }
+
+        function apply() {
+            var Scale = document.getElementById("preview");
+            Scale.style.transform = "scale(" + s + ") rotate(" + r + "deg)";
+            Scale.style.transformOrigin = "0 0";
+        }
+
+        function unlock() {
+            document.body.style.overflow = 'auto';
+            document.onkeydown = unll;
+            document.body.removeEventListener('wheel');
+        }
+
         function lock() {
             document.body.style.overflow = 'hidden';
-const keyCodeMap = {
-    // 91: true, // command
-    61: true,
-    107: true, // 数字键盘 +
-    109: true, // 数字键盘 -
-    173: true, // 火狐 - 号
-    187: true, // +
-    189: true, // -
-};
-// 覆盖ctrl||command + ‘+’/‘-’
-document.onkeydown = function (event) {
-    const e = event || window.event;
-    const ctrlKey = e.ctrlKey || e.metaKey;
-    if (ctrlKey && keyCodeMap[e.keyCode]) {
-        e.preventDefault();
-    } else if (e.detail) { // Firefox
-        event.returnValue = false;
-    }
-};
-// 覆盖鼠标滑动
-document.body.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) {
-        if (e.deltaY < 0) {
-            e.preventDefault();
-            return false;
-        }
-        if (e.deltaY > 0) {
-            e.preventDefault();
-            return false;
-        }
-    }
-}, { passive: false });
+            const keyCodeMap = {
+                // 91: true, // command
+                61: true,
+                107: true, // 数字键盘 +
+                109: true, // 数字键盘 -
+                173: true, // 火狐 - 号
+                187: true, // +
+                189: true, // -
+            };
+            // 覆盖ctrl||command + ‘+’/‘-’
+            document.onkeydown = function(event) {
+                const e = event || window.event;
+                const ctrlKey = e.ctrlKey || e.metaKey;
+                if (ctrlKey && keyCodeMap[e.keyCode]) {
+                    e.preventDefault();
+                } else if (e.detail) { // Firefox
+                    event.returnValue = false;
+                }
+            };
+            // 覆盖鼠标滑动
+            document.body.addEventListener('wheel', (e) => {
+                if (e.ctrlKey) {
+                    if (e.deltaY < 0) {
+                        e.preventDefault();
+                        return false;
+                    }
+                    if (e.deltaY > 0) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+            }, {
+                passive: false
+            });
         }
 
         function handleFiles(files) {
@@ -75,7 +107,13 @@ document.body.addEventListener('wheel', (e) => {
 <body style="margin: 0;padding: 0;">
     <input type="file" id="input" onchange="handleFiles(this.files)">
     <div id="preview" style="position:absolute;"></div>
-    <button onclick="lock();" style="position:fixed;left: 0;bottom: 0;">锁定</button>
+    <div style="position:fixed;left: 0;bottom: 0;">
+        <button onclick="lock();">锁定</button>
+        <button onclick="unlock();">解锁</button>
+        <button onclick="blowup();">放大</button>
+        <button onclick="reduce();">缩小</button>
+        <!-- <button onclick="rotate90();">旋转</button> -->
+    </div>
 </body>
 
 </html>
