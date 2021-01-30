@@ -21,15 +21,17 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
         /* Make the image fully responsive */
         
         .carousel-inner img {
+            border-radius: 16px;
+            /* margin: 64px; */
             width: 100%;
             height: 100%;
         }
@@ -67,7 +69,7 @@
         <div class="main-banner">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 banner-img">
+                    <div class="col-lg-6 banner-img" style="padding: 5rem;">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="500">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -75,18 +77,16 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="https://i.loli.net/2020/10/06/dWavRxKF1ut7Vpw.png
-									" class="d-block w-100" alt="...">
+                                    <img src="images/1.jpg" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="https://i.loli.net/2020/10/06/eTEZ4vBw6pUM1Ad.png
-									" class="d-block w-100" alt="...">
+                                    <img src="images/2.jpg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 style-banner">
-                        <h1 class="text-wh font-weight-bold">两种视图随心切换</h1>
+                        <h1 class="text-wh font-weight-bold">咸鱼代办</h1>
                         <p class="mt-sm-4 mt-4 text-li">学霸必备神器，高效的待办列表</p>
                         <a type="button" href="#download" class="btn btn-outline-light mt-sm-5 mt-4 scroll">立即下载</a>
                     </div>

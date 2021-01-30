@@ -2,47 +2,283 @@
 <html>
 
 <head>
-    <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    Fore more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-  -->
-    <base href="/">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta charset="UTF-8">
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="A new Flutter project.">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>oboard</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
-    <!-- iOS meta tags & icons -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="咸鱼待办">
-    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <link rel="stylesheet" href="css/milligram.css">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
 
-    <title>咸鱼待办</title>
-    <link rel="manifest" href="manifest.json">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style type="text/css">
+        body {
+            background-color: #EFEFEF;
+            padding: 0;
+            margin: 0;
+            color: #999;
+        }
+        
+        .write-wrapper {
+            height: min-content;
+            line-height: min-content;
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 96px;
+            font-size: 15px;
+            border-radius: 16px;
+            padding-bottom: 0.8rem;
+        }
+        
+        .write-wrapper-text {
+            font-size: 1.5rem;
+            margin-left: 1.6rem;
+            color: #444;
+        }
+        
+        .write-wrapper-input {
+            width: 90%;
+            height: 2.0rem;
+            font-size: 1.2rem;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            color: #555;
+        }
+        
+        .body {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 30px;
+            box-shadow: 2px 2px 2px #e4e3e3;
+            background-color: #FFFFFF;
+            font-size: 16px;
+            border-radius: 16px;
+            padding-bottom: 0.8rem;
+        }
+        
+        .time {
+            width: 100%;
+            height: 4rem;
+            line-height: 4rem;
+            font-size: 1.6rem;
+            color: #666;
+        }
+        
+        .time-l {
+            margin-left: 5%;
+        }
+        
+        .wrapper {
+            width: 100%;
+            height: min-content;
+            line-height: min-content;
+            display: flex;
+            flex-direction: row;
+            margin-top: 0px;
+            position: relative;
+            overflow-y: overlay;
+            ;
+        }
+        
+        .left-wrapper {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        
+        .sound {
+            width: 0.1rem;
+            height: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #d8d3d3;
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
+        
+        .footer {
+            height: 6rem;
+        }
+        
+        .write {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 3.8rem;
+            right: 10%;
+            cursor: pointer;
+        }
+        
+        .write-icon {
+            font-size: 2.4rem;
+            color: #999;
+            border-radius: 50%;
+        }
+    </style>
+    <script src="conlang/js/Bmob-2.2.5.min.js"></script>
+    <script type="text/javascript">
+        // 初始化
+        Bmob.initialize("bfd303bd833e3eaf", "123321");
 
-<body>
-    <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('flutter-first-frame', function() {
-                navigator.serviceWorker.register('flutter_service_worker.js?v=2720092745');
-            });
+        const query = Bmob.Query("timediary");
+        query.find().then(res => {
+            var str = "";
+            var bmob = document.getElementById('bmob');
+            var createdAt = "";
+            var length = res.length;
+            for (var i = 0; i < res.length; i++) {
+                var dq_date = res[i].dq_date.trim();
+
+                if (dq_date == createdAt) {
+                    str += '<div class="wrapper" id="wrapper">';
+                    str += '<div class="left-wrapper" id="time">' + res[i].dq_time + '</div>';
+                    str += '<div class="right-wrapper" id="content">' + res[i].content + '</div>';
+                    str += '</div> ';
+                } else {
+
+                    if (createdAt != "") str += '</div>';
+                    createdAt = res[i].createdAt.substring(0, 10).trim();
+                    str += '<div class="body" id="body">';
+                    str += '<div class="time"><span class="time-l" id="time_l">' + res[i].dq_date + '</span></div>';
+
+                    str += '<div class="wrapper" id="wrapper">';
+                    str += '<div class="left-wrapper" id="time">' + res[i].dq_time + '</div>';
+                    str += '<div class="right-wrapper" id="content">' + res[i].content + '</div>';
+                    str += '</div> ';
+                }
+
+            }
+            bmob.innerHTML = str;
+
+        });
+
+        function beforeSubmit() {
+            var title = document.getElementById('title').value;
+            var myDate = new Date(); //获取系统当前时间
+            // alert(myDate);
+            var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+            var month = myDate.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+            var day = myDate.getDate(); //获取当前日(1-31)
+            var hours = myDate.getHours(); //获取当前小时数(0-23)
+            var minutes = myDate.getMinutes(); //获取当前分钟数(0-59)
+            var dq_date = year + '-' + xToxx(month) + '-' + xToxx(day);
+            var dq_time = xToxx(hours) + ':' + xToxx(minutes);
+
+            if (title.length == 0 && title == "") {
+                alert('请输入内容！');
+                return false;
+            }
+
+            const query = Bmob.Query('timediary');
+            query.set("content", title);
+            query.set("dq_time", dq_time);
+            query.set("dq_date", dq_date);
+            query.save().then(res => {
+                console.log(res)
+                alert("发布成功！");
+                location.reload();
+            }).catch(err => {
+                console.log(err)
+                alert("发布失败！");
+            })
+        }
+
+        // 将小于10的数转换成 0 + num 的格式的方法 如：01、02、03
+        function xToxx(num) {
+            if (num < 10) {
+                return '0' + num;
+            } else {
+                return num;
+            }
         }
     </script>
-    <script src="main.dart.js" type="application/javascript"></script>
+
+
+    <style>
+        div.topbar {
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            position: fixed;
+            padding-left: 50px;
+            height: min-content;
+            background-color: rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            border: none;
+            height: 40px;
+            outline: none;
+            color: white;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin: 1px;
+            position: relative;
+            background: transparent;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        button:focus {
+            color: black;
+            background: rgb(255, 255, 255);
+        }
+        
+        img.imgh {
+            top: 0px;
+            left: 0px;
+            margin: 1px;
+            position: fixed;
+        }
+    </style>
+
+    <script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js">
+    </script>
+    <script type="text/javascript">
+        $(window).load(function() {
+            console.log("HelloWorld");
+        });
+    </script>
+</head>
+
+<!-- <body background="https://area.sinaapp.com/bingImg/"> -->
+
+<body>
+    <div>
+        <img src="https://area.sinaapp.com/bingImg/" />
+        <center>欢迎来到一块小板子的主页</center>
+    </div>
+
+
+    <!-- <div class="write-wrapper">
+        <textarea placeholder="内容" id="title" type="text" name="title"></textarea>
+        <input class="write-wrapper-submit" type="submit" value="提交" onclick="beforeSubmit()" />
+    </div> -->
+    <div id="bmob"></div>
+
+    <div class="topbar">
+        <button onclick="window.location='index.html'">主页</button>
+        <button onclick="window.location='https://obb.wodemo.net'">wodemo</button>
+        <button onclick="window.location='conlang/index.html'">conlang</button>
+        <button onclick="window.location='lazy/index.html'">咸鱼代办</button>
+    </div>
+
+    <img class="imgh" height="40px" src="images/head.jpg" />
+
+    <div class="footer"></div>
+    <!-- <div class="write">
+				<i class="iconfont icon-jia write-icon"></i>
+			</div> -->
+
 </body>
 
 </html>
