@@ -720,7 +720,6 @@ p.title-para {
 ul.apps-lists li {
     display: inline-block;
     min-width: 150px;
-    max-width: 720px;
 }
 
 ul.apps-lists li a {
